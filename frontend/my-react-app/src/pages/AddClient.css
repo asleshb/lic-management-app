@@ -1,0 +1,110 @@
+/* AddClient.css */
+
+/* Main container for centering and background */
+.add-client-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  padding: 1rem;
+}
+
+/* Card-like container for the form */
+.add-client-form-card {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 40rem;
+}
+
+/* Title for the form */
+.form-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Grouping for label and input */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Styling for labels */
+.form-group label {
+  display: block;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+
+/* Styling for input fields */
+.form-input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #374151;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Styling for validation error messages */
+.error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Button group for alignment */
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* Base styles for buttons */
+.button-group button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Submit button specific styling */
+.submit-button {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.submit-button:hover {
+  background-color: #1e40af;
+  transform: translateY(-2px);
+}
+
+/* Cancel button specific styling */
+.cancel-button {
+  background-color: #e5e7eb;
+  color: #4b5563;
+}
+
+.cancel-button:hover {
+  background-color: #d1d5db;
+  transform: translateY(-2px);
+}

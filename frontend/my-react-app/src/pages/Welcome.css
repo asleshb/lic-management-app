@@ -1,0 +1,106 @@
+Welcome.css
+
+/*
+  Base styles for a full-page, centered layout.
+  This ensures the content is always in the middle of the screen
+  and provides a consistent background.
+*/
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f4f8; /* Light gray background */
+  padding: 1rem; /* A bit of padding for mobile screens */
+  box-sizing: border-box;
+  text-align: center; /* Center-align text by default */
+}
+
+/*
+  Styling for the main welcome box.
+  This is the central card containing the icon, text, and button.
+  It's designed to be responsive, with a max-width and a smooth transition.
+*/
+.welcome-box {
+  background-color: #ffffff;
+  border-radius: 1.5rem; /* Large rounded corners */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem; /* Generous padding */
+  margin: 1rem; /* Space around the box */
+  max-width: 90%; /* Responsive width for smaller screens */
+  transition: all 0.3s ease-in-out;
+}
+
+/*
+  Media query for larger screens (tablets and desktops)
+  to make the welcome box wider and more prominent.
+*/
+@media (min-width: 640px) {
+  .welcome-box {
+    max-width: 40rem; /* A fixed max-width for desktops */
+    padding: 3.5rem;
+  }
+}
+
+/* Styling for the user icon at the top of the box. */
+.user-icon {
+  font-size: 6rem; /* Large icon size */
+  color: #3b82f6; /* A nice blue color */
+  margin-bottom: 1.5rem;
+}
+
+/* Styling for the content section (heading and paragraph). */
+.welcome-content h1 {
+  font-size: 2.5rem; /* Large heading */
+  font-weight: 700; /* Bold font */
+  color: #1f2937; /* Dark gray */
+  margin-bottom: 1rem;
+}
+
+.welcome-content p {
+  font-size: 1.125rem; /* Slightly larger paragraph text */
+  color: #6b7280; /* Medium gray */
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/*
+  Media query to adjust font sizes for very small screens
+  to prevent text from overflowing.
+*/
+@media (max-width: 480px) {
+  .welcome-content h1 {
+    font-size: 2rem;
+  }
+  .welcome-content p {
+    font-size: 1rem;
+  }
+}
+
+/* Styling for the "Get Started" button. */
+.start-button {
+  background-color: #3b82f6; /* Blue background */
+  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px; /* Pill shape */
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.start-button:hover {
+  background-color: #2563eb; /* Darker blue on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Styling for the footer at the bottom of the page. */
+.welcome-footer {
+  position: absolute;
+  bottom: 1rem;
+  color: #9ca3af; /* Light gray text */
+  font-size: 0.875rem;
+}
