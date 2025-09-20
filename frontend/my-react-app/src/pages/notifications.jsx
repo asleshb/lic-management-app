@@ -7,6 +7,7 @@
 //   FaCalendarAlt,
 //   FaCalendarDay,
 //   FaSpinner,
+//   FaTimes, // Import this for the close icon
 // } from "react-icons/fa";
 // import "./Notifications.css";
 
@@ -21,8 +22,51 @@
 //   </div>
 // );
 
+// // New component for the Update Modal/Popup
+// const UpdateModal = ({ isOpen, onClose, client, onUpdatePayment }) => {
+//   if (!isOpen || !client) return null; // Conditional rendering for the modal
+
+//   return (
+//     <div className="modal-overlay">
+//       <div className="modal-content">
+//         <button className="modal-close" onClick={onClose}>
+//           <FaTimes />
+//         </button>
+//         <h3 className="modal-title">Update Payment for {client.name}</h3>
+//         <p className="modal-subtitle">Select the new payment frequency:</p>
+//         <div className="update-options">
+//           <button
+//             className="update-option-button"
+//             onClick={() => onUpdatePayment(client._id, "Monthly")}
+//           >
+//             Monthly
+//           </button>
+//           <button
+//             className="update-option-button"
+//             onClick={() => onUpdatePayment(client._id, "Quarterly")}
+//           >
+//             Quarterly
+//           </button>
+//           <button
+//             className="update-option-button"
+//             onClick={() => onUpdatePayment(client._id, "Half-Yearly")}
+//           >
+//             Half-Yearly
+//           </button>
+//           <button
+//             className="update-option-button"
+//             onClick={() => onUpdatePayment(client._id, "Yearly")}
+//           >
+//             Yearly
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
 // function Notifications() {
-//   const navigate = useNavigate(); // ← Add useNavigate here
+//   const navigate = useNavigate();
 
 //   const [counts, setCounts] = useState({
 //     monthly: 0,
@@ -35,13 +79,16 @@
 //   const [isLoading, setIsLoading] = useState(true);
 //   const [error, setError] = useState(null);
 
+//   // New state variables for the modal
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [currentClient, setCurrentClient] = useState(null);
+
 //   useEffect(() => {
 //     const fetchNotifications = async () => {
 //       try {
 //         const response = await fetch(
 //           `${API_BASE_URL}/api/notifications/due-dates`
 //         );
-
 //         if (!response.ok) throw new Error("Failed to fetch notifications");
 //         const data = await response.json();
 //         setNotifications(data.notifications);
@@ -55,9 +102,28 @@
 //     fetchNotifications();
 //   }, []);
 
-//   const handleUpdate = (clientId) => {
-//     // Navigate to UpdateClient page with client ID
-//     navigate(`/update-client/${clientId}`);
+//   const handleUpdate = (client) => {
+//     setCurrentClient(client);
+//     setIsModalOpen(true);
+//   };
+
+//   const handleUpdatePayment = async (clientId, newFrequency) => {
+//     try {
+//       const response = await fetch(`${API_BASE_URL}/api/clients/${clientId}`, {
+//         method: "PUT",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({ paymentDuration: newFrequency }),
+//       });
+//       if (!response.ok) throw new Error("Failed to update payment duration.");
+
+//       // After a successful update, close the modal and refresh the data
+//       setIsModalOpen(false);
+//       window.location.reload();
+//     } catch (err) {
+//       console.error(err);
+//     }
 //   };
 
 //   if (isLoading) {
@@ -132,7 +198,6 @@
 //                   </p>
 //                   <p className="payment-frequency">{client.paymentDuration}</p>
 //                 </div>
-
 //                 <div className="notification-actions">
 //                   <a
 //                     href={`tel:${client.mobileNumber}`}
@@ -142,7 +207,7 @@
 //                   </a>
 //                   <button
 //                     className="update-button"
-//                     onClick={() => handleUpdate(client._id)}
+//                     onClick={() => handleUpdate(client)}
 //                   >
 //                     Update
 //                   </button>
@@ -156,6 +221,14 @@
 //           </p>
 //         )}
 //       </div>
+
+//       {/* The new modal component is rendered here */}
+//       <UpdateModal
+//         isOpen={isModalOpen}
+//         onClose={() => setIsModalOpen(false)}
+//         client={currentClient}
+//         onUpdatePayment={handleUpdatePayment}
+//       />
 //     </div>
 //   );
 // }
@@ -201,25 +274,25 @@ const UpdateModal = ({ isOpen, onClose, client, onUpdatePayment }) => {
         <div className="update-options">
           <button
             className="update-option-button"
-            onClick={() => onUpdatePayment(client._id, "Monthly")}
+            onClick={() => onUpdatePayment(client._id, "monthly")}
           >
             Monthly
           </button>
           <button
             className="update-option-button"
-            onClick={() => onUpdatePayment(client._id, "Quarterly")}
+            onClick={() => onUpdatePayment(client._id, "quarterly")}
           >
             Quarterly
           </button>
           <button
             className="update-option-button"
-            onClick={() => onUpdatePayment(client._id, "Half-Yearly")}
+            onClick={() => onUpdatePayment(client._id, "half-yearly")}
           >
             Half-Yearly
           </button>
           <button
             className="update-option-button"
-            onClick={() => onUpdatePayment(client._id, "Yearly")}
+            onClick={() => onUpdatePayment(client._id, "yearly")}
           >
             Yearly
           </button>
@@ -280,13 +353,21 @@ function Notifications() {
         },
         body: JSON.stringify({ paymentDuration: newFrequency }),
       });
-      if (!response.ok) throw new Error("Failed to update payment duration.");
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.message || "Failed to update payment duration."
+        );
+      }
 
       // After a successful update, close the modal and refresh the data
       setIsModalOpen(false);
+      // Refresh the page to show the updated state (without the button)
       window.location.reload();
     } catch (err) {
       console.error(err);
+      alert(err.message); // Show the error message to the user
     }
   };
 
@@ -363,18 +444,21 @@ function Notifications() {
                   <p className="payment-frequency">{client.paymentDuration}</p>
                 </div>
                 <div className="notification-actions">
+                  {/* The conditional check is added here */}
+                  {!client.hasPaymentDurationUpdated && (
+                    <button
+                      className="update-button"
+                      onClick={() => handleUpdate(client)}
+                    >
+                      Update
+                    </button>
+                  )}
                   <a
                     href={`tel:${client.mobileNumber}`}
                     className="client-phone"
                   >
                     {client.mobileNumber}
                   </a>
-                  <button
-                    className="update-button"
-                    onClick={() => handleUpdate(client)}
-                  >
-                    Update
-                  </button>
                 </div>
               </div>
             ))}

@@ -1,5 +1,6 @@
 import express from "express";
 import Client from "../models/Client.js";
+
 const router = express.Router();
 
 router.get("/due-dates", async (req, res) => {
