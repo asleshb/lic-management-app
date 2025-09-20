@@ -11,6 +11,7 @@ const clientSchema = new mongoose.Schema(
     term: { type: Number, required: true },
     paymentDuration: { type: String, required: true },
     dueDate: { type: Date },
+    hasPaymentDurationUpdated: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
