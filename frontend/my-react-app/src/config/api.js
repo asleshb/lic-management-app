@@ -1,10 +1,14 @@
+// src/config.js
+
 const API_URLS = {
-  local: "http://localhost:5000", // when running on your laptop
-  mobile: "http://192.168.1.10:5000", // replace with your PC IP for phone testing
-  production: "https://your-backend.onrender.com", // when deployed to Render
+  local: "http://localhost:5000",
+  production: "https://lic-management-backend.onrender.com",
 };
 
-const CURRENT_ENV = "local"; // change this to "mobile" or "production" when needed
+// Automatically detect environment
+// NODE_ENV is set by React: 'development' for npm start, 'production' for build
+const CURRENT_ENV =
+process.env.NODE_ENV === "production" ? "production" : "local";
 
 const API_BASE_URL = API_URLS[CURRENT_ENV];
 

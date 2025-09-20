@@ -22,13 +22,14 @@ function MyClients() {
         setClients(data);
         setLoading(false);
       } catch (err) {
+        console.error("Error fetching clients:", err);
         setError(err.message);
         setLoading(false);
       }
     };
 
     fetchClients();
-  }, []);
+  }, []); // empty dependency array → runs once on mount
 
   if (loading) {
     return (

@@ -22,7 +22,14 @@ dotenv.config({ path: path.resolve(__dirname, ".env") });
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://lic-management-frontend.onrender.com",
+    ],
+  })
+);
 app.use(express.json());
 
 // MongoDB Connection
