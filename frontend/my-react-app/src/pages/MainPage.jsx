@@ -1,5 +1,6 @@
 import React from "react";
 import API_BASE_URL from "../config/api";
+import "./MainPage.css";
 import { useNavigate } from "react-router-dom";
 import {
   FaPlus,
@@ -9,7 +10,7 @@ import {
   FaListAlt,
   FaMemory,
 } from "react-icons/fa";
-import "./MainPage.css";
+
 
 // Header component with a professional and clean design.
 const Header = () => (

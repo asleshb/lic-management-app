@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUserCircle, FaCreditCard, FaCalendarAlt } from "react-icons/fa";
-import "./MyClients.css"; // We will create this CSS file next
+import "./myclients.css";
 import API_BASE_URL from "../config/api";
 
 function MyClients() {
