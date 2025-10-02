@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API_BASE_URL from "../config/api";
+import "./notifications.css";
 import { useNavigate } from "react-router-dom";
 import {
   FaCalendar,
@@ -9,7 +10,6 @@ import {
   FaSpinner,
   FaTimes, // Import this for the close icon
 } from "react-icons/fa";
-import "./notifications.css";
 
 // A simple component to display a summary box
 const SummaryBox = ({ title, count, icon, color }) => (
