@@ -28,6 +28,8 @@ function AddClient() {
     startDate: "",
     term: "",
     paymentDuration: "",
+    /*this also removed later */
+    hasPaymentDurationUpdated: "false",
   });
 
   // State to hold validation errors for each field
@@ -72,13 +74,21 @@ function AddClient() {
       setErrors({});
       setFormError("");
       try {
+        // this also removed later
+        const payload = {
+          ...clientData,
+          hasPaymentDurationUpdated:
+            clientData.hasPaymentDurationUpdated === "true",
+        };
+        //till here
+
         // Send a POST request to your backend API
         const response = await fetch(`${API_BASE_URL}/api/clients`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(clientData),
+          body: JSON.stringify(payload),
         });
 
         if (response.ok) {
@@ -93,6 +103,7 @@ function AddClient() {
             startDate: "",
             term: "",
             paymentDuration: "",
+            hasPaymentDurationUpdated: "false",
           });
           navigate("/main");
         } else {
@@ -239,6 +250,25 @@ function AddClient() {
               <p className="error-message">{errors.paymentDuration}</p>
             )}
           </div>
+
+          {/* Has Payment Duration Updated (Checkbox)
+             this is s anew part added for just a couple of time later it will removed*/}
+          <div className="form-group">
+            <label htmlFor="hasPaymentDurationUpdated">
+              Has Payment Duration Already Updated?
+            </label>
+            <select
+              id="hasPaymentDurationUpdated"
+              name="hasPaymentDurationUpdated"
+              value={clientData.hasPaymentDurationUpdated}
+              onChange={handleChange}
+              className="form-input"
+            >
+              <option value="false">No</option>
+              <option value="true">Yes</option>
+            </select>
+          </div>
+          {/* till here*/}
 
           <div className="button-group">
             <button type="submit" className="submit-button">

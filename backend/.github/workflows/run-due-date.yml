@@ -1,0 +1,15 @@
+name: Trigger Due Date Update
+
+# Run every day at midnight UTC
+on:
+  schedule:
+    - cron: "0 0 * * *" # At 00:00 UTC daily
+  workflow_dispatch: # Optional: allows manual trigger from GitHub UI
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render endpoint
+        run: |
+          curl -X POST https://lic-management-backend.onrender.com/api/run-due-date-update
