@@ -675,17 +675,23 @@ app.use(
 );
 app.use(express.json());
 
-
-
-
-
+//get request for a normal ping request made by the frontend
+app.get("/api/ping", (req, res) => {
+  res.json({ status: "ok", time: new Date() });
+});
 
 // -------------------------
 // API Route: Add a Client
 // -------------------------
 app.post("/api/clients", async (req, res) => {
   try {
-    const { startDate, term, paymentDuration,hasPaymentDurationUpdated, ...rest } = req.body;
+    const {
+      startDate,
+      term,
+      paymentDuration,
+      hasPaymentDurationUpdated,
+      ...rest
+    } = req.body;
 
     const start = new Date(startDate);
     let dueDate;
@@ -731,14 +737,6 @@ app.post("/api/clients", async (req, res) => {
       .json({ message: "Error adding client", error: error.message });
   }
 });
-
-
-
-
-
-
-
-
 
 // -------------------------
 // API Route: Update Client Payment Duration

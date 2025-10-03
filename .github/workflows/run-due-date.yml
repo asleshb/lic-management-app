@@ -13,3 +13,4 @@ jobs:
       - name: Trigger Render endpoint
         run: |
           curl -X POST https://lic-management-backend.onrender.com/api/run-due-date-update
+
