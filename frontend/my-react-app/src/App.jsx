@@ -38,6 +38,7 @@ import Main from "./pages/MainPage.jsx";
 import AddClient from "./pages/AddClient.jsx";
 import MyClients from "./pages/myclients.jsx";
 import Notifications from "./pages/notifications.jsx";
+import ClientDetails from "./pages/ClientDetails.jsx";
 
 function App() {
   // ✅ Pre-warm runs once when App mounts
@@ -56,6 +57,7 @@ function App() {
         <Route path="/add-client" element={<AddClient />} />
         <Route path="/my-clients" element={<MyClients />} />
         <Route path="/notifications" element={<Notifications />} />
+        <Route path="/client/:id" element={<ClientDetails />} />
       </Routes>
     </Router>
   );

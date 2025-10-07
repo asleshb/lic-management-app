@@ -1,0 +1,60 @@
+.client-details-container {
+  padding: 2rem;
+  background-color: #f7fafc;
+  min-height: 100vh;
+}
+
+.back-button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.back-button:hover {
+  background-color: #1d4ed8;
+}
+
+.client-card-details {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.client-icon {
+  font-size: 5rem;
+  color: #2563eb;
+  margin-bottom: 1rem;
+}
+
+.details-section h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.details-section p {
+  font-size: 1rem;
+  color: #4a5568;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.inline-icon {
+  margin-right: 0.5rem;
+  color: #d97706;
+}

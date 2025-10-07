@@ -804,6 +804,25 @@ app.get("/api/clients", async (req, res) => {
 });
 
 // -------------------------
+// API Route: Get Single Client by ID
+// -------------------------
+app.get("/api/clients/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const client = await Client.findById(id);
+    if (!client) {
+      return res.status(404).json({ message: "Client not found" });
+    }
+    res.status(200).json(client);
+  } catch (error) {
+    console.error("Error fetching client:", error);
+    res
+      .status(500)
+      .json({ message: "Error fetching client", error: error.message });
+  }
+});
+
+// -------------------------
 // Notifications Routes
 // -------------------------
 app.use("/api/notifications", notificationsRouter);
